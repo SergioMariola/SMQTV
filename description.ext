@@ -1,0 +1,780 @@
+//--- Informações da missão
+
+author				= "Sergio";
+onLoadName			= "Só Morre Quem Tá Vivo";
+onLoadMission		= "Servidor co-op 4fun. Exerça o bom senso.";
+loadScreen			= "\a3\Missions_F_Orange\Data\Img\orange_overview_ca.paa";
+overviewPicture		= "\a3\Missions_F_Orange\Data\Img\orange_overview_ca.paa";
+briefingName		= "SMQTV";
+overviewText		= "Missão criada para o servidor SMQTV";
+overviewTextLocked	= "Missão criada para o servidor SMQTV (Fechado)";
+
+class Header
+{
+	gameType 	= Coop;
+	minPlayers	=  1;
+	maxPlayers	= 30;
+};
+
+//--- Respawn
+
+respawn				= "BASE";
+respawnButton		= 1;
+respawnDelay		= 15;
+respawnDialog		= 1;
+respawnOnStart		= -1;
+respawnTemplates[]	= {"MenuPosition"};
+
+//--- Revive
+
+reviveMode						= 1;
+reviveUnconsciousStateMode		= 0;
+reviveRequiredTrait				= 0;
+reviveRequiredItems				= 2;
+reviveRequiredItemsFakConsumed	= 1;
+reviveDelay						= 30;
+reviveMedicSpeedMultiplier		= 10;
+reviveForceRespawnDelay			= 3;
+reviveBleedOutDelay				= 300;
+
+//--- Configurações da missão
+
+corpseManagerMode			= 0;
+aiKills						= 0;
+disabledAI					= 1;
+disableRandomization[]		= {"All"};
+saving						= 0;
+briefing					= 0;
+enableDebugConsole[]		= {"76561198009814676"};
+
+//--- Tarefas
+
+taskManagement_markers3D = 1;
+taskManagement_propagate = 1;
+taskManagement_drawDist = 2000;
+
+//--- Segurança do servidor
+
+allowFunctionsRecompile = 1;
+
+//--- Descrição de tarefas
+
+class CfgTaskDescriptions
+{
+	class descricaoPrincipal
+	{
+		title		= "Missão Principal";
+		description	= "As forças inimigas capturaram um ponto estratégico importante.<br/>Algumas tarefas precisam ser realizadas naquela área o mais rápido possível!";
+		marker		= "";
+	};
+
+	class descricaoIgreja
+	{
+		title		= "Terrorismo religioso";
+		description	= "Temos informações suficientes para acreditar que as forças inimigas estão coagindo a população local e ameaçando detonar explosivos dentro de centros religiosos do local. Isso não pode continuar!<br/>Verifique todas as igrejas e capelas da área atrás de dispositivos explosivos antes que o pior aconteça.<br/><br/>IMPORTANTE: É aconselhável que somente soldados especializados em EXPLOSIVOS lidem com este tipo de dispositivo, caso contrário não podemos prever as consequências.";
+		marker		= "";
+	};
+
+	class descricaoGasolina
+	{
+		title		= "Ouro Negro";
+		description	= "Postos de gasolina locais estão sendo usados para sustentar os sistemas de armas inimigos. Não precisamos de mais esse problema nas nossas costas.<br/>Vá até a área a destrua as bombas de combustível demarcadas no mapa!";
+		marker		= "";
+	};
+
+	class descricaoDrone
+	{
+		title		= "Ameaça não-tripulada";
+		description	= "Descobrimos um hangar na área de operações que abriga um suposto drone de combate inimigo. O veículo estaria sendo preparado para ação ainda esta semana.<br/>Precismos interceptar essa empreitada o quanto antes,<br/><br/>Ache o hangar e destrua o veículo!";
+		marker		= "";
+	};
+
+	class descricaoAgua
+	{
+		title		= "Fornecimento de água";
+		description	= "A estadia inimiga na área de operações está sendo prolongada pela comodidade que eles adiquiriram com os recursos locais. Um deles é a água potável que os moradores locais dispõem.<br/>É preciso cortar o acesso deles à este recurso.<br/>Vá até a área a destrua as caixas d'água do local!";
+		marker		= "";
+	};
+
+	class descricaoEnergia
+	{
+		title		= "Corte de energia";
+		description	= "As forças inimigas contam com a rede de energia elétrica local para tarefas básicas como iluminação, força para seus radares e rádios de comunicação de longa distância.<br/>Precisamos que vocês destruam os transformadores de energia na área de operações para ganhar vantagem (principalmente na escuridão da noite).<br/><br/>IMPORTANTE: Os transformadores de energia serão representados no mapa com ícone(s) branco(s), no formato de uma lâmpada.";
+		marker		= "";
+	};
+};
+
+//--- Tipos de tarefas
+
+class CfgTaskTypes
+{
+	class tipoPrincipal
+	{
+		icon	= "\a3\ui_f\data\IGUI\Cfg\simpleTasks\types\attack_ca.paa";
+		icon3D	= "\a3\ui_f\data\IGUI\Cfg\simpleTasks\types\attack_ca.paa";
+	};
+
+	class tipoTorre
+	{
+		icon	= "\a3\ui_f\data\IGUI\Cfg\simpleTasks\types\destroy_ca.paa";
+		icon3D	= "\a3\ui_f\data\IGUI\Cfg\simpleTasks\types\destroy_ca.paa";
+	};
+
+	class tipoMaleta
+	{
+		icon	= "\a3\ui_f\data\IGUI\Cfg\simpleTasks\types\backpack_ca.paa";
+		icon3D	= "\a3\ui_f\data\IGUI\Cfg\simpleTasks\types\backpack_ca.paa";
+	};
+
+	class tipoIgreja
+	{
+		icon	= "\a3\ui_f\data\IGUI\Cfg\simpleTasks\types\mine_ca.paa";
+		icon3D	= "\a3\ui_f\data\IGUI\Cfg\simpleTasks\types\mine_ca.paa";
+	};
+
+	class tipoGasolina
+	{
+		icon	= "\a3\ui_f\data\IGUI\Cfg\simpleTasks\types\destroy_ca.paa";
+		icon3D	= "\a3\ui_f\data\IGUI\Cfg\simpleTasks\types\destroy_ca.paa";
+	};
+
+	class tipoDrone
+	{
+		icon	= "\a3\ui_f\data\IGUI\Cfg\simpleTasks\types\plane_ca.paa";
+		icon3D	= "\a3\ui_f\data\IGUI\Cfg\simpleTasks\types\plane_ca.paa";
+	};
+
+	class tipoAgua
+	{
+		icon	= "\a3\ui_f\data\IGUI\Cfg\simpleTasks\types\map_ca.paa";
+		icon3D	= "\a3\ui_f\data\IGUI\Cfg\simpleTasks\types\map_ca.paa";
+	};
+
+	class tipoTerminal
+	{
+		icon	= "\a3\ui_f\data\IGUI\Cfg\simpleTasks\types\upload_ca.paa";
+		icon3D	= "\a3\ui_f\data\IGUI\Cfg\simpleTasks\types\upload_ca.paa";
+	};
+
+	class tipoEnergia
+	{
+		icon	= "\a3\ui_f\data\IGUI\Cfg\simpleTasks\types\danger_ca.paa";
+		icon3D	= "\a3\ui_f\data\IGUI\Cfg\simpleTasks\types\danger_ca.paa";
+	};
+};
+//--- Sons
+
+class CfgSounds
+{
+	sounds[] = {};
+
+	class alarmeCAS
+	{
+		name 		= "alarme1CAS";
+		sound[] 	= {"recursos\killstreaks\bombardeio\CAS\alarmeCAS.ogg", 1, 1};
+		titles[]	= {};
+	};
+
+	class alarmeMK41
+	{
+		name 		= "alarme1MK41";
+		sound[] 	= {"recursos\killstreaks\bombardeio\MK41\alarmeMK41.ogg", 2, 1};
+		titles[]	= {};
+	};
+
+	class medic_heavy
+	{
+		name 		= "medic_heavy";
+		sound[] 	= {"recursos\mensagens\msgIncap\medic_heavy.ogg", 1, 1};
+		titles[]	= {};
+	};
+
+	class medic_scout
+	{
+		name 		= "medic_scout";
+		sound[] 	= {"recursos\mensagens\msgIncap\medic_scout.ogg", 1, 1};
+		titles[]	= {};
+	};
+
+	class medic_medic
+	{
+		name 		= "medic_medic";
+		sound[] 	= {"recursos\mensagens\msgIncap\medic_medic.ogg", 1, 1};
+		titles[]	= {};
+	};
+
+	class medic_soldier
+	{
+		name 		= "medic_soldier";
+		sound[] 	= {"recursos\mensagens\msgIncap\medic_soldier.ogg", 1, 1};
+		titles[]	= {};
+	};
+
+	class medic_sniper
+	{
+		name 		= "medic_sniper";
+		sound[] 	= {"recursos\mensagens\msgIncap\medic_sniper.ogg", 1, 1};
+		titles[]	= {};
+	};
+	class radioIn
+	{
+		name 		= "radioIn";
+		sound[] 	= {"recursos\igui\hudRadio\radioIn.ogg", 1, 1};
+		titles[]	= {};
+	};
+	class radioOut
+	{
+		name 		= "radioOut";
+		sound[] 	= {"recursos\igui\hudRadio\radioOut.ogg", 1, 1};
+		titles[]	= {};
+	};
+};
+
+//--- Menu de comunicação
+
+class CfgCommunicationMenu
+{
+	class mandaChuva
+	{
+		text = "Manda Chuva";
+		submenu = "";
+		expression = "_this spawn SMQTV_fnc_mandaChuva;";
+		icon = "\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\casheli_ca.paa";
+		cursor = "";
+		enable = "1";
+		removeAfterExpressionCall = 0;
+	};
+
+	class MK41
+	{
+		text = "Bombardeio MK41";
+		submenu = "";
+		expression = "_this call SMQTV_fnc_bombardeioMK41";
+		icon = "\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\cas_ca.paa";
+		cursor = "\A3\ui_f\data\igui\cfg\cursors\attack_ca.paa";
+		enable = "1";
+		removeAfterExpressionCall = 0;
+	};
+
+	class CAS
+	{
+		text = "Bombardeio CAS";
+		submenu = "";
+		expression = "_this call SMQTV_fnc_bombardeioCAS";
+		icon = "\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\cas_ca.paa";
+		cursor = "\A3\ui_f\data\igui\cfg\cursors\attack_ca.paa";
+		enable = "1";
+		removeAfterExpressionCall = 0;
+	};
+};
+
+//--- Dicas
+
+class CfgHints
+{
+	class Recursos
+	{
+		// Topic title (displayed only in topic listbox in Field Manual)
+		displayName = "Menu do Jogador";
+		class MenuJogador
+		{
+			// Hint title, filled by arguments from 'arguments' param
+			displayName = "Menu do Jogador";
+			// Optional hint subtitle, filled by arguments from 'arguments' param
+			displayNameShort = "Menu do Jogador";
+			// Structured text, filled by arguments from 'arguments' param
+			description = "Pressione %3Home%4 ou selecione %3Menu do Jogador%4 no menu de ações (roda do mouse) para ter acesso a recursos específicos deste servidor.";
+			// Optional structured text, filled by arguments from 'arguments' param (first argument is %11, see notes below), grey color of text
+			tip = "-Distância de ícones de amigos;<br/>-Distância visão de terreno;<br/>-Opções de fadiga;<br/>-Lista de jogadores;<br/>-Estatísticas;<br/>-Lista de jogadores;<br/>E outros.";
+			arguments[] = {
+				{{"getOver"}}, // Double nested array means assigned key (will be specially formatted)
+				{"name"}, // Nested array means element (specially formatted part of text)
+				"name player" // Simple string will be simply compiled and called, String can also link to localization database in case it starts by str_
+			};
+			// Optional image
+			image = "\a3\ui_f\data\gui\cfg\hints\Miss_icon_ca.paa";
+			// optional parameter for not showing of image in context hint in mission (default false))
+			noImage = false;
+			// -1 Creates no log in player diary, 0 Creates diary log ( default when not provided )
+			// if a dlc's appID Number is used ( see [[getDLCs]] ) and the user does not have the required dlc installed then the advHint will be replaced with
+			// configfile >> "CfgHints" >> "DlcMessage" >> "Dlc#"; where # is this properties ( dlc appID ) number
+			dlc = -1;
+		};
+		class CAS
+		{
+			displayName = "Recompensa";
+			displayNameShort = "Bombardeio CAS";
+			description = "Você recebeu uma recompensa por %3 10 %4 eliminações em série. Acesse o menu de recompensas pelo atalho %3Ctrl + F%4 do teclado.";
+			tip = "IMPORTANTE: Esta recompensa não persiste após o ressurgimento do jogador.";
+			arguments[] = {};
+			image = "\A3\Air_F_EPC\Plane_CAS_01\Data\UI\Plane_CAS_01_CA.paa";
+			noImage = false;
+			dlc = -1;
+		};
+		class MK41
+		{
+			displayName = "Recompensa";
+			displayNameShort = "Bombardeio Mk-41 VLS";
+			description = "Você recebeu uma recompensa por %3 20 %4 eliminações em série. Acesse o menu de recompensas pelo atalho %3Ctrl + F%4 do teclado.";
+			tip = "IMPORTANTE: Esta recompensa não persiste após o ressurgimento do jogador.";
+			arguments[] = {};
+			image = "\a3\ui_f\data\gui\cfg\hints\Target_ca.paa";
+			noImage = false;
+			dlc = -1;
+		};
+		class mandaChuva
+		{
+			displayName = "Recompensa";
+			displayNameShort = "Manda-Chuva";
+			description = "Você recebeu uma recompensa por %3 30 %4 eliminações em série. Acesse o %3Manda-Chuva%4 no menu de recompensas pelo atalho %3Ctrl + F%4 do teclado.";
+			tip = "IMPORTANTE: Esta recompensa não persiste após o ressurgimento do jogador.";
+			arguments[] = {};
+			image = "\a3\ui_f\data\gui\cfg\hints\Vtol_take_off_ca.paa";
+			noImage = false;
+			dlc = -1;
+		};
+	};
+};
+
+//--- Insignias
+
+class CfgUnitInsignia
+{
+	class Brasil
+	{
+		author = "Sergio";
+		displayName = "Exército Brasileiro";
+		material = "\A3\Ui_f\data\GUI\Cfg\UnitInsignia\default_insignia.rvmat";
+		texture = "recursos\gui\insignia\patchBR.paa";
+	};
+	class Paraquedista
+	{
+		author = "Sergio";
+		displayName = "Paraquedistas";
+		material = "\A3\Ui_f\data\GUI\Cfg\UnitInsignia\default_insignia.rvmat";
+		texture = "recursos\gui\insignia\patchPQD.paa";
+	};
+	class BOPE
+	{
+		author = "Sergio";
+		displayName = "BOPE";
+		material = "\A3\Ui_f\data\GUI\Cfg\UnitInsignia\default_insignia.rvmat";
+		texture = "recursos\gui\insignia\patchBOPE.paa";
+	};
+	class Cobra
+	{
+		author = "Sergio";
+		displayName = "Cobra";
+		material = "\A3\Ui_f\data\GUI\Cfg\UnitInsignia\default_insignia.rvmat";
+		texture = "recursos\gui\insignia\patchCobra.paa";
+	};
+	class AgulhasNegras
+	{
+		author = "Sergio";
+		displayName = "Agulhas Negras";
+		material = "\A3\Ui_f\data\GUI\Cfg\UnitInsignia\default_insignia.rvmat";
+		texture = "recursos\gui\insignia\patchAN.paa";
+	};
+	class FuzileiroNaval
+	{
+		author = "Sergio";
+		displayName = "Fuzileiro Naval";
+		material = "\A3\Ui_f\data\GUI\Cfg\UnitInsignia\default_insignia.rvmat";
+		texture = "recursos\gui\insignia\patchFuzileiro.paa";
+	};
+	class Selva
+	{
+		author = "Sergio";
+		displayName = "Selva";
+		material = "\A3\Ui_f\data\GUI\Cfg\UnitInsignia\default_insignia.rvmat";
+		texture = "recursos\gui\insignia\patchSelva.paa";
+	};
+	class Exercito
+	{
+		author = "Sergio";
+		displayName = "Exército Brasileiro";
+		material = "\A3\Ui_f\data\GUI\Cfg\UnitInsignia\default_insignia.rvmat";
+		texture = "recursos\gui\insignia\patchEB.paa";
+	};
+	class FAB
+	{
+		author = "Sergio";
+		displayName = "Força Aérea Brasileira";
+		material = "\A3\Ui_f\data\GUI\Cfg\UnitInsignia\default_insignia.rvmat";
+		texture = "recursos\gui\insignia\patchFAB.paa";
+	};
+};
+
+//--- Funções
+
+class CfgFunctions
+{
+	class SMQTV
+	{
+		class BancoDeDados
+		{
+			class dbInicia				{file = "recursos\db\dbInicia.sqf"};
+			class dbRecomp				{file = "recursos\db\dbRecomp.sqf"};
+			class dbCheckInicializacao	{file = "recursos\db\dbCheckInicializacao.sqf"};
+			class dbCheckJogador		{file = "recursos\db\dbCheckJogador.sqf"};
+			class dbAddJogador			{file = "recursos\db\dbAddJogador.sqf"};
+			class dbAddAtributo			{file = "recursos\db\dbAddAtributo.sqf"};
+			class dbAtualizaJogador		{file = "recursos\db\dbAtualizaJogador.sqf"};
+			class dbAtualizaLogin		{file = "recursos\db\dbAtualizaLogin.sqf"};
+			class dbAtributoJogador		{file = "recursos\db\dbAtributoJogador.sqf"};
+			class dbEnviaJogador		{file = "recursos\db\dbEnviaJogador.sqf"};
+			class dbRequisitaJogador	{file = "recursos\db\dbRequisitaJogador.sqf"};
+		};
+
+		class Sistema
+		{
+			class configuraCivil		{file = "missoes\configuraCivil.sqf"};
+			class configuraInimigo		{file = "missoes\configuraInimigo.sqf"};
+			class contaVivos			{file = "missoes\contaVivos.sqf"};
+			class criaInimigos			{file = "missoes\criaInimigos.sqf"};
+			class criaMarcador			{file = "missoes\criaMarcador.sqf"};
+			class monitoraCombustivel	{file = "missoes\monitoraCombustivel.sqf"};
+			class monitoraMarcador		{file = "missoes\monitoraMarcador.sqf"};
+			class patrulha				{file = "missoes\patrulha.sqf"};
+			class trataTarefas			{file = "missoes\trataTarefas.sqf"};
+
+			//Dano colateral
+			class danoColateral			{file = "recursos\danoColateral\danoColateral.sqf"};
+			class danoColateralPunicao	{file = "recursos\danoColateral\punicao.sqf"};
+			class danoColateralVFX		{file = "recursos\danoColateral\punicaoVFX.sqf"};
+
+			class loiter				{file = "recursos\loiter\loiter.sqf"};
+			class addScore				{file = "recursos\score\addScore.sqf"};
+			class remScore				{file = "recursos\score\remScore.sqf"};
+			class trataAcao				{file = "configJogador\configs\actMenu.sqf"};
+		};
+
+		class Mensagens
+		{
+			//cutText personalizado
+			class cutText				{file = "recursos\mensagens\cutText.sqf"};
+			//Systemchat de incapacitação/morte
+			class msgIncap				{file = "recursos\mensagens\msgIncap\msgIncap.sqf"};
+		};
+
+		class MissaoPrincipal
+		{
+			class missaoPrincipal		{file = "missoes\missaoPrincipal\missaoPrincipal.sqf"};
+			class tarefas				{file = "missoes\missaoPrincipal\tarefas\tarefas.sqf"};
+			class agua					{file = "missoes\missaoPrincipal\tarefas\agua.sqf"};
+			class drone					{file = "missoes\missaoPrincipal\tarefas\drone.sqf"};
+			class energia				{file = "missoes\missaoPrincipal\tarefas\energia.sqf"};
+			class gasolina				{file = "missoes\missaoPrincipal\tarefas\gasolina.sqf"};
+			//Igreja
+			class igreja				{file = "missoes\missaoPrincipal\tarefas\igreja\configIgreja.sqf"};
+			class defusaIgreja			{file = "missoes\missaoPrincipal\tarefas\igreja\defusa.sqf"};
+			//Terminal
+			class terminal				{file = "missoes\missaoPrincipal\tarefas\terminal\configTerminal.sqf"};
+			class monitoraTerminal		{file = "missoes\missaoPrincipal\tarefas\terminal\monitoraTerminal.sqf"};
+			//Maleta
+			class maleta				{file = "missoes\missaoPrincipal\tarefas\maleta\configMaleta.sqf"};
+			class monitoraMaleta		{file = "missoes\missaoPrincipal\tarefas\maleta\monitoraMaleta.sqf"};
+			class escolheCasa			{file = "missoes\missaoPrincipal\tarefas\maleta\escolheCasa.sqf"};
+			class configModificaArea	{file = "missoes\missaoPrincipal\tarefas\maleta\configModificaArea.sqf"};
+			class modificaArea			{file = "missoes\missaoPrincipal\tarefas\maleta\modificaArea.sqf"};
+			//Torre
+			class torre					{file = "missoes\missaoPrincipal\tarefas\torre\configTorre.sqf"};
+			class monitoraTorre			{file = "missoes\missaoPrincipal\tarefas\torre\monitoraTorre.sqf"};
+			//Extração
+			class extracaoIA			{file = "missoes\missaoPrincipal\extracao\extracaoIA.sqf"};
+			class extracaoAviso			{file = "missoes\missaoPrincipal\extracao\extracaoAviso.sqf"};
+			class extracaoFumaca		{file = "missoes\missaoPrincipal\extracao\criaFumaca.sqf"};
+			class extracaoRadio			{file = "missoes\missaoPrincipal\extracao\extracaoRadio.sqf"};
+			//Inimigos
+			class aaAO					{file = "missoes\missaoPrincipal\aaAO.sqf"};
+			class civisAO				{file = "missoes\missaoPrincipal\civisAO.sqf"};
+			class inimigosAO			{file = "missoes\missaoPrincipal\inimigosAO.sqf"};
+			class patrulhaJatoAO		{file = "missoes\missaoPrincipal\patrulhaJatoAO.sqf"};
+			class reforcoAO				{file = "missoes\missaoPrincipal\reforcoAO.sqf"};
+		};
+
+		class Recursos
+		{
+			class arsenal				{file = "recursos\caixaArsenal\arsenal.sqf"};
+			class noFlyZone				{file = "recursos\noFlyZone\noFlyZone.sqf"};
+			class compoeObjetos			{file = "recursos\composicoes\compoeObjetos.sqf"};
+
+			//Caixa de rearmamento grande
+			class caixaRearm			{file = "recursos\caixaRearm\configCaixaRearm.sqf"};
+			class rearmaConfigsRemotas	{file = "recursos\caixaRearm\configsRemotas.sqf"};
+			class rearma				{file = "recursos\caixaRearm\rearma.sqf"};
+
+			//Caixa de rearmamento pequena
+			class configRearmaSoldado	{file = "recursos\caixaRearm\rearmaSoldado\configRearmaSoldado.sqf"};
+			class rearmaSoldado			{file = "recursos\caixaRearm\rearmaSoldado\rearmaSoldado.sqf"};
+			class rearmaCriaCaixa		{file = "recursos\caixaRearm\rearmaSoldado\criaCaixa.sqf"};
+			class rearmaCaixaConfigs	{file = "recursos\caixaRearm\rearmaSoldado\caixaConfigs.sqf"};
+		};
+
+		class AjudaFerido
+		{
+			//Arrasta ferido
+			class configArrasta			{file = "recursos\ajudaFerido\arrastaFerido\configArrasta.sqf"};
+			class arrasta				{file = "recursos\ajudaFerido\arrastaFerido\arrasta.sqf"};
+			//Solicitação de cura
+			class configSolicitaCura	{file = "recursos\ajudaFerido\solicitaCura\configSolicitaCura.sqf"};
+			class solicitaCura			{file = "recursos\ajudaFerido\solicitaCura\solicitaCura.sqf"};
+			class hudSolicitaCura		{file = "recursos\ajudaFerido\solicitaCura\hudSilicitaCura.sqf"};
+		};
+
+		class AirStrike
+		{
+			class airstrikeArtilharia	{file = "recursos\airstrike\airstrikeArtilharia.sqf"};
+			class airstrikeGBU			{file = "recursos\airstrike\airstrikeGBU.sqf"};
+			class criaProjetilAS		{file = "recursos\airstrike\criaProjetil.sqf"};
+		};
+
+		class Reparo
+		{
+			class reparo				{file = "recursos\reparo\reparo.sqf"};
+			class reparoDrone			{file = "recursos\reparo\reparoDrone.sqf"};
+			class reparoMunicao			{file = "recursos\reparo\reparoMunicao.sqf"};
+			class addReparo				{file = "recursos\reparo\addReparo.sqf"};
+			class remReparo				{file = "recursos\reparo\remReparo.sqf"};
+		};
+
+		class HALOJump
+		{
+			class haloJump 				{file = "recursos\haloJump\haloJump.sqf"};
+			class haloJumpCam			{file = "recursos\haloJump\haloJumpCam.sqf"};
+			class solicitaPilotoA		{file = "recursos\haloJump\carona\solicitaPilotoA.sqf"};
+			class solicitaPilotoB		{file = "recursos\haloJump\carona\solicitaPilotoB.sqf"};
+			class solicitaPilotos		{file = "recursos\haloJump\carona\solicitaPilotos.sqf"};
+			class solicitaPilotoAviso	{file = "recursos\haloJump\carona\solicitaPilotoAviso.sqf"};
+			class caronaAvisoCooldown	{file = "recursos\haloJump\carona\solicitaCooldown.sqf"};
+			class guiSolicitaPilotos	{file = "recursos\haloJump\carona\criaJanela.sqf"};
+		};
+
+		class carroBomba
+		{
+			class carroBomba			{file = "recursos\carroBomba\carroBomba.sqf"};
+			class carroAlarme			{file = "recursos\carroBomba\carroAlarme.sqf"};
+		};
+
+		class SaltoDeVeiculo
+		{
+			class saltoDeVeiculo		{file = "recursos\saltoDeVeiculo\saltoDeVeiculo.sqf"};
+			class checkCooldown			{file = "recursos\saltoDeVeiculo\checkCooldown.sqf"};
+			class enviaCooldown			{file = "recursos\saltoDeVeiculo\enviaCooldown.sqf"};
+			class requisitaCooldown		{file = "recursos\saltoDeVeiculo\requisitaCooldown.sqf"};
+			class iniciaCooldown		{file = "recursos\saltoDeVeiculo\iniciaCooldown.sqf"};
+			class sdvCameraTrans		{file = "recursos\saltoDeVeiculo\saltoDeVeiculoCamera.sqf"};
+		};
+
+		class FogoAmigo
+		{
+			class fogoAmigo				{file = "recursos\fogoAmigo\fogoAmigo.sqf"};
+			class fogoAmigoAviso		{file = "recursos\fogoAmigo\fogoAmigoAviso.sqf"};
+			class fogoAmigoPunicao		{file = "recursos\fogoAmigo\punicao.sqf"};
+			class fogoAmigoPunicaoVFX	{file = "recursos\fogoAmigo\punicaoVFX.sqf"};
+			class fogoAmigoPunicaoCheck	{file = "recursos\fogoAmigo\punicaoCheck.sqf"};
+		};
+
+		class Veiculos
+		{
+			class respawnMovel			{file = "recursos\respawnMovel\respawnMovel.sqf"};
+			class configHeli			{file = "recursos\configVeiculo\configHeli.sqf"};
+			class configJato			{file = "recursos\configVeiculo\configJato.sqf"};
+			class configVeiculo			{file = "recursos\configVeiculo\configVeiculo.sqf"};
+			class veiculosRTB			{file = "recursos\configVeiculo\veiculosRTB.sqf"};
+			class estacionaVeiculo		{file = "recursos\configVeiculo\estacionaVeiculo.sqf"};
+			class respawnVeiculo		{file = "recursos\configVeiculo\respawnVeiculo.sqf"};
+			class vehConfigsRemotas		{file = "recursos\configVeiculo\configsRemotas.sqf"};
+			class saltoPQD				{file = "recursos\configVeiculo\saltoPQD.sqf"};
+			class reabasteceComum		{file = "recursos\reabastecimento\reabasteceComum.sqf"};
+			class reabasteceDrone		{file = "recursos\reabastecimento\reabasteceDrone.sqf"};
+		};
+
+		class Performance
+		{
+			class excluiObjeto			{file = "recursos\performance\excluiObjeto.sqf"};
+			class excluiObjetos			{file = "recursos\performance\excluiObjetos.sqf"};
+			class gerenciaMortos		{file = "recursos\performance\gerenciaMortos.sqf"};
+			class transfereGrupo		{file = "recursos\hc\transfereGrupo.sqf"};
+			class transfereGrupos		{file = "recursos\hc\transfereGrupos.sqf"};
+		};
+
+		class Efeitos
+		{
+			class vrFadeIn				{file = "recursos\efeitos\vrFadeIn.sqf"};
+			class vrFadeOut				{file = "recursos\efeitos\vrFadeOut.sqf"};
+			class terremoto				{file = "recursos\efeitos\terremoto.sqf"};
+			class efeitoDestruicaoVeic	{file = "recursos\efeitos\efeitoDestruicaoVeic.sqf"};
+			class efeitoFogo			{file = "recursos\efeitos\efeitoFogo.sqf"};
+			class efeitoFumacaJato		{file = "recursos\efeitos\efeitoFumacaJato.sqf"};
+			class efeitoPunicao			{file = "recursos\efeitos\efeitoPunicao.sqf"};
+			class aplicaDesfoque		{file = "recursos\efeitos\aplicaDesfoque.sqf"};
+			class cancelaDesfoque		{file = "recursos\efeitos\cancelaDesfoque.sqf"};
+			class efeitoDestroiTerminal	{file = "recursos\efeitos\efeitoDestroiTerminal.sqf"};
+			class flyBy					{file = "recursos\efeitos\flyBy.sqf"};
+		};
+
+		class Killstreaks
+		{
+			//Configs
+			class addRecompensa			{file = "recursos\killstreaks\addRecompensa.sqf"};
+			class checkKillstreaks		{file = "recursos\killstreaks\checkKillstreaks.sqf"};
+			class reiniciaKillstreaks	{file = "recursos\killstreaks\reiniciaKillstreaks.sqf"};
+			class removeCommMenuItem	{file = "recursos\killstreaks\removeCommMenuItem.sqf"};
+			class hudCtrlF				{file = "recursos\killstreaks\hudCtrlF.sqf"};
+			//Mensagens
+			class bombardeioAviso		{file = "recursos\killstreaks\bombardeio\aviso.sqf"};
+			class bombardeioSeta		{file = "recursos\killstreaks\bombardeio\seta.sqf"};
+			//CAS
+			class bombardeioCAS			{file = "recursos\killstreaks\bombardeio\CAS\abreJanela.sqf"};
+			class iniciaCAS				{file = "recursos\killstreaks\bombardeio\CAS\iniciaCAS.sqf"};
+			//Mk41 VLS
+			class bombardeioMK41		{file = "recursos\killstreaks\bombardeio\MK41\bombardeioMK41.sqf"};
+			class iniciaMK41			{file = "recursos\killstreaks\bombardeio\MK41\iniciaMK41.sqf"};
+			class bombardeioLiveFeed	{file = "recursos\killstreaks\bombardeio\MK41\bombardeioLiveFeed.sqf"};
+			class criaProjetilKS		{file = "recursos\killstreaks\bombardeio\MK41\criaProjetil.sqf"};
+			//Manda Chuva
+			class mandaChuva			{file = "recursos\killstreaks\mandaChuva\mandaChuva.sqf"};
+			class mandaChuvaSair		{file = "recursos\killstreaks\mandaChuva\mandaChuvaSair.sqf"};
+		};
+
+		class GUI
+		{
+			//Boas vindas
+			class guiBoasVindas			{file = "recursos\gui\BoasVindas\criaJanela.sqf"};
+			//Menu do jogador
+			class guiMenuDoJogador		{file = "recursos\gui\menuDoJogador\criaJanela.sqf"};
+			class configMenuDoJogador	{file = "recursos\gui\menuDoJogador\configMenu.sqf"};
+			class dicaMenu				{file = "recursos\gui\menuDoJogador\dicaMenu.sqf"};
+			//Indicadores
+			class guiInd3D				{file = "recursos\gui\indicadores3D\criaJanela.sqf"};
+			class ctrlInd3DMaxDist		{file = "recursos\gui\indicadores3D\ctrlInd3DMaxDist.sqf"};
+			class ctrlInd3DNomeTam		{file = "recursos\gui\indicadores3D\ctrlInd3DNomeTam.sqf"};
+			class ctrlInd3DMostra		{file = "recursos\gui\indicadores3D\ctrlInd3DMostra.sqf"};
+			//Visibilidade
+			class guiVisibilidade		{file = "recursos\gui\visibilidade\criaJanela.sqf"};
+			class ctrlVidaAnimal		{file = "recursos\gui\visibilidade\ctrlVidaAnimal.sqf"};
+			class ctrlSomAmb			{file = "recursos\gui\visibilidade\ctrlSomAmb.sqf"};
+			class ctrlAmbVol			{file = "recursos\gui\visibilidade\ctrlAmbVol.sqf"};
+			class ctrlTerreno			{file = "recursos\gui\visibilidade\ctrlTerreno.sqf"};
+			class ctrlObjetos			{file = "recursos\gui\visibilidade\ctrlObjetos.sqf"};
+			class ctrlSombras			{file = "recursos\gui\visibilidade\ctrlSombras.sqf"};
+			class ctrlGrama				{file = "recursos\gui\visibilidade\ctrlGrama.sqf"};
+			//Estatísticas
+			class guiEstatisticas		{file = "recursos\gui\estatisticas\criaJanela.sqf"};
+			//Fadiga
+			class guiFadiga				{file = "recursos\gui\fadiga\criaJanela.sqf"};
+			class ctrlFadiga			{file = "recursos\gui\fadiga\ctrlFadiga.sqf"};
+			class ctrlMira				{file = "recursos\gui\fadiga\ctrlMira.sqf"};
+			//Jogadores online
+			class guiJogadoresOnline	{file = "recursos\gui\jogadoresOnline\criaJanela.sqf"};
+			class ctrlJogadoresOnline	{file = "recursos\gui\jogadoresOnline\ctrlJogadoresOnline.sqf"};
+			class ctrlKick				{file = "recursos\gui\jogadoresOnline\ctrlKick.sqf"};
+			class ctrlLoadout			{file = "recursos\gui\jogadoresOnline\ctrlLoadout.sqf"};
+			//Recursos do servidor
+			class guiRecursosDoServidor	{file = "recursos\gui\recursosDoServidor\criaJanela.sqf"};
+			class ctrlRecursosBotao		{file = "recursos\gui\recursosDoServidor\ctrlBotao.sqf"};
+			//Changelog
+			class guiChangelog			{file = "recursos\gui\changelog\criaJanela.sqf"};
+			class ctrlChangelog			{file = "recursos\gui\changelog\ctrlChangelog.sqf"};
+			//Insignias
+			class guiInsignia			{file = "recursos\gui\insignia\criaJanela.sqf"};
+			class guiInsigniaSair		{file = "recursos\gui\insignia\fechaJanela.sqf"};
+			class ctrlInsigniaSel		{file = "recursos\gui\insignia\ctrlSeleciona.sqf"};
+			class ctrlInsigniaAplica	{file = "recursos\gui\insignia\ctrlAplica.sqf"};
+		};
+
+		class IGUI
+		{
+			//Limpa tela
+			class limpaTela				{file = "recursos\igui\limpaTela.sqf"};
+			//Killstreaks
+			class iniciaPlacar			{file = "recursos\igui\placar\iniciaPlacar.sqf"};
+			class atualizaPlacar		{file = "recursos\igui\placar\atualizaPlacar.sqf"};
+			class recompensaVFX			{file = "recursos\igui\placar\recompensaVFX.sqf"};
+			//Earplugs
+			class iniciaEarplugs		{file = "recursos\earplugs\iniciaEarplugs.sqf"};
+			class atualizaEarplugs		{file = "recursos\earplugs\atualizaEarplugs.sqf"};
+			//Barra de avisos
+			class barraAviso			{file = "recursos\igui\barraAviso\barraAviso.sqf"};
+			class barraAvisoEfeito		{file = "recursos\igui\barraAviso\barraAvisoEfeito.sqf"};
+			//Indicadores
+			class ind3DInf				{file = "recursos\igui\indicadores\indicadores3DSoldados.sqf"};
+			class ind2DInf				{file = "recursos\igui\indicadores\indicadores2D.sqf"};
+			class hudMed				{file = "recursos\igui\indicadores\hudMed.sqf"};
+			//Pop-ups
+			class logoPopup				{file = "recursos\igui\popups\logoPopup.sqf"};
+			//HUD Pilotos de transporte
+			class hudPiloto				{file = "recursos\igui\hudPiloto\hudPiloto.sqf"};
+			class hudVFX				{file = "recursos\igui\hudPiloto\hudVFX.sqf"};
+			//HUD Cursor
+			class hudCursorOn			{file = "recursos\igui\hudCursor\hudCursorOn.sqf"};
+			class hudCursorOff			{file = "recursos\igui\hudCursor\hudCursorOff.sqf"};
+			//HUD Radio
+			class radio					{file = "recursos\igui\hudRadio\hudRadio.sqf"};
+			//HUD Recarrega
+			class hudRecarrega			{file = "recursos\igui\hudRecarrega\hudRecarrega.sqf"};
+			//HUD Granada
+			class hudGranada			{file = "recursos\igui\hudGranada\hudGranada.sqf"};
+			//HUD Cura
+			class hudCura				{file = "recursos\igui\hudCura\hudCura.sqf"};
+			class iniciaCura			{file = "recursos\igui\hudCura\iniciaCura.sqf"};
+			class cancelaCura			{file = "recursos\igui\hudCura\cancelaCura.sqf"};
+			//HUD Reparo
+			class hudReparo				{file = "recursos\igui\hudReparo\hudReparo.sqf"};
+			class iniciaReparo			{file = "recursos\igui\hudReparo\iniciaReparo.sqf"};
+			class cancelaReparo			{file = "recursos\igui\hudReparo\cancelaReparo.sqf"};
+		};
+
+		class Jogador
+		{
+			class desabilitaComunicacao	{file = "configJogador\desabilitaComunicacao.sqf"};
+			class habilitaComunicacao	{file = "configJogador\habilitaComunicacao.sqf"};
+			class configRespawnPos		{file = "configJogador\configRespawnPos.sqf"};
+			class configScore			{file = "configJogador\configScore.sqf"};
+			class configZeus			{file = "configJogador\configZeus.sqf"};
+		};
+	};
+};
+
+//--- GUI
+
+#include "\a3\ui_f\hpp\definecommongrids.inc"
+#include "\a3\3DEN\UI\macros.inc"
+#include "\a3\3DEN\UI\macroexecs.inc"
+#include "\a3\ui_f\hpp\definedikcodes.inc"
+#include "\a3\ui_f\hpp\definecommoncolors.inc"
+#include "\a3\ui_f\hpp\defineresincl.inc"
+#include "defines.hpp"
+#include "recursos\gui\menuDoJogador\janela.hpp"				//idd 9999
+#include "recursos\gui\boasVindas\janela.hpp"					//idd 9998
+#include "recursos\gui\changelog\janela.hpp"					//idd 9997
+#include "recursos\gui\recursosDoServidor\janela.hpp"			//idd 9996
+#include "recursos\gui\jogadoresOnline\janela.hpp"				//idd 9995
+#include "recursos\gui\visibilidade\janela.hpp"					//idd 9994
+#include "recursos\gui\fadiga\janela.hpp"						//idd 9993
+#include "recursos\gui\estatisticas\janela.hpp"					//idd 9992
+#include "recursos\haloJump\carona\janela.hpp"					//idd 9991
+#include "recursos\gui\indicadores3D\janela.hpp"				//idd 9990
+#include "recursos\gui\insignia\janela.hpp"						//idd 9989
+#include "recursos\killstreaks\bombardeio\CAS\janela.hpp"		//idd 9988
+
+//--- IGUI
+
+class RscTitles
+{
+	#include "recursos\igui\placar\placar.hpp"				//idd 3100
+	#include "recursos\earplugs\earplugs.hpp"				//idd 3200
+	#include "recursos\igui\barraAviso\barraAviso.hpp"		//idd 3300
+	#include "recursos\igui\indicadores\hudMed.hpp"			//idd 3400
+	#include "recursos\igui\hudPiloto\hudPiloto.hpp"		//idd 3500
+	#include "recursos\igui\hudCursor\hudCursor.hpp"		//idd 3600
+	#include "recursos\caixaRearm\rearma.hpp"				//idd 3700
+	#include "recursos\igui\hudRadio\hudRadio.hpp"			//idd 3800
+	#include "recursos\igui\hudRecarrega\hudRecarrega.hpp"	//idd 3900
+	#include "recursos\igui\hudGranada\hudGranada.hpp"		//idd 4000
+	#include "recursos\igui\hudCura\hudCura.hpp"			//idd 4100
+	#include "recursos\igui\hudReparo\hudReparo.hpp"		//idd 4200
+	#include "recursos\killstreaks\hudCtrlF.hpp"			//idd 4300
+	#include "recursos\ajudaFerido\solicitaCura\hudSolicitaCura.hpp"	//idd 4400
+};
