@@ -1,0 +1,1 @@
+_this addEventHandler ["HandleRating", {1}];

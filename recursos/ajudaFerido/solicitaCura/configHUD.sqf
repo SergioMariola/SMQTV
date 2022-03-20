@@ -1,0 +1,1 @@
+["SMQTV_hudSoliciaCura"] call BIS_fnc_rscLayer;

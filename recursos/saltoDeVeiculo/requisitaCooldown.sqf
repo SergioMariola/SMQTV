@@ -1,0 +1,1 @@
+publicVariableServer "SMQTV_cooldownSDV";

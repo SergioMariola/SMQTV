@@ -1,0 +1,1 @@
+SMQTV_cooldownSDV = 0;

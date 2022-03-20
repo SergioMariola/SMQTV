@@ -1,0 +1,1 @@
+[zeus, [[_this], true]] remoteExec ["addCuratorEditableObjects", 2];

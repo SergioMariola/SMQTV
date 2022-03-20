@@ -1,0 +1,28 @@
+{
+	// See https://go.microsoft.com/fwlink/?LinkId=733558
+	// for the documentation about the tasks.json format
+	"version": "2.0.0",
+	"tasks": [
+        {
+            "label": "Start Arma 3 (Mission Editing)",
+            "type": "process",
+            "options": {
+                "cwd": "E:\\SteamLibrary\\steamapps\\common\\Arma 3"
+            },
+            "command": "arma3_x64",
+            "args": [
+                "${workspaceFolder}\\mission.sqm",
+                "-noLogs",
+                "-skipIntro",
+                "-noSound",
+                "-noSplash",
+                "-showScriptErrors"
+            ],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        }
+    ]
+}

@@ -1,0 +1,1 @@
+["InitializePlayer", [_this, false]] call BIS_fnc_dynamicGroups;

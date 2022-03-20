@@ -1,0 +1,1 @@
+inGameUISetEventHandler ["Action", "_this call SMQTV_fnc_trataAcao"];

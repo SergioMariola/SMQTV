@@ -1,0 +1,11 @@
+if !(ctrlCommitted _this) exitWith {};
+_cor = ctrlTextColor _this;
+_posY = (ctrlPosition _this) select 1;
+_this ctrlSetTextColor [1,0,0,1];
+_this ctrlSetPositionY (_posY + 0.05);
+_this ctrlCommit 0.05;
+waitUntil {ctrlCommitted _this};
+_this ctrlSetPositionY _posY;
+_this ctrlCommit 0.05;
+waitUntil {ctrlCommitted _this};
+_this ctrlSetTextColor _cor;
