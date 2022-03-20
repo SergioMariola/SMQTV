@@ -1,7 +1,8 @@
 # SMQTV
 Arma 3 - Só Morre Quem Tá Vivo (Invade and Annex)
 
-Esta é uma missão multi-player para o jogo de computador Arma 3. Profundamente influenciada pela popular missão "Invade & Annex", do grupo Ahoy World.
+Esta é uma missão multi-player para o jogo de computador Arma 3.
+Profundamente influenciada pela popular missão "Invade & Annex", do grupo Ahoy World.
 Com código 100% original, está pronta para rodar tanto em servidores dedicados quanto em servidores hospedados por um jogador.
 A missão suporta Headless Client.
 
